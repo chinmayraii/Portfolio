@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>mainquiz</title>
+    <link rel="stylesheet" href="bootstrap/bootstrap.js">
+    <link rel="stylesheet" href="bootstrap/bootstrap.min.css">
+    <link rel="stylesheet"href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+  integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+  integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+  crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+  integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+  crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+  integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+  crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <title>main quiz</title>
+</head>
+
+<body style="background-color: black;">
+
+    <div class="container">
+        <div class="card">
+            <div class="card-header" style="background-color: black;">
+                <img src="https://img.freepik.com/free-vector/quiz-neon-sign_1262-19629.jpg?w=2000" height="200px" width="100%" alt="">
+            
+            <div class="row">
+                <div class="col-2">
+                    <h1 id="tq" class="text-white" style="margin-left:20px ;"></h1>
+                </div>
+                <div class="col-8">
+                    <h1 style="font-size: 50px;padding-left:130px ;color:white;">Master Minds</h1>
+                </div>
+                <div class="col-1">
+                    <img id="image" src="https://thumbs.dreamstime.com/b/clock-alarm-icon-white-contour-black-background-illustration-87708978.jpg"
+                        height="100px" width="100px" alt="">
+                </div>
+                <div class="col-1">
+                    <h1 style="font-size: 60px; color: white; text-align: center;" id="timer" ></h1>
+                </div>
+            </div>
+            </div>
+           <div class="card-body">
+                <h1 id="que" style="font-size: 60px;margin-left: 20px;"></h1>
+            <div style="font-size: 30px;" id="op">
+                <input class="m-2" type="radio" name="c" onclick="getans('a')" > <span id="a" ></span><br>
+                <input class="m-2" type="radio" name="c" onclick="getans('b')" > <span id="b"></span><br>
+                <input class="m-2" type="radio" name="c" onclick="getans('c')" > <span id="c"></span><br>
+                <input class="m-2" type="radio" name="c" onclick="getans('d')" > <span id="d"></span><br>
+            </div>
+            <div class="text-center">
+                <h1 id="correct">CORRECT ANSWERS : <span id="cor" style="font-size: 40px;" class="text-success"></span></h1>
+                <h1 id="wrong">WRONG ANSWERS : <span id="w" style="font-size: 40px;" class="text-danger"></span></h1>
+                <h1 id="total">YOUR SCORE : <span id="t" style="font-size: 40px;" class="text-danger"></span></h1>
+            </div>
+            <div class="row">
+                <div class="col-9"></div>
+                <div class="col-3" id="restart">
+                    <button onclick="restart()" class="bg-dark text-white" type="submit"style="font-size: 30px; width: 150px; width:250px;">RESTART</button>
+                </div>
+            </div> 
+            <br>
+            <div class="row">
+                <div class="col-9"></div>
+                <div class="col-3">
+                    <button onclick="display(t)" class="bg-dark text-white" type="submit"style="font-size: 30px; width: 150px; width:250px;" id="but">NEXT</button>
+                </div>
+            </div> 
+           </div>
+        </div>
+    </div>
+</body>
+<!-- js -->
+
+<script>
+    let right=0;
+    let wrong=0;
+    let c=0;
+    let ans;
+    let st;
+    let t;
+    let a=0;
+
+    function getans(p)
+    {
+        ans=p;
+    }
+    var data=[
+    { "Q": "All keywords in C are in" ,a:'LowerCase letters ',b:'UpperCase letters ',c:'CamelCase letters', d:'None of the mentioned' , ans:'a'},
+	{ "Q" : "Which of the following is true for variable names in C?" ,a:'They can contain alphanumeric characters as well as special characters' ,b:'It is not an error to declare a variable to be one of the keywords(like goto, static)' ,c: 'Variable names cannot start with a digit' ,d: 'Variable can be of any length',ans:'c'},
+	{ "Q":" Which is valid C expression?" ,a:'int my_num = 100,000' ,b:'int my_num = 100000' ,c:'int my num = 1000' ,d: 'int $my_num = 10000',ans:'b'},
+	{ "Q":"Which of the following cannot be a variable name in C?" ,a:'volatile' ,b: 'true' ,c: 'friend' ,d:' export', ans:'a'},
+	{ "Q":"What is short int in C programming?" ,a:' The basic data type of C' ,b:'Qualifier' ,c:'Short is the qualifier and int is the basic data type' ,d:'All of the mentioned' , ans:'c' },
+	{ "Q":"Which of the following declaration is not supported by C language?" ,a:'String str' ,b:' char *str' ,c: 'float str = 3e2' ,d: 'Both String str; & float str = 3e2' ,ans:'a'},
+	{ "Q":" Which keyword is used to prevent any changes in the variable within a C program?" ,a: 'immutable' ,b:'mutable' ,c: 'const' ,d: 'volatile' , ans:'c'},
+	{ "Q":"What is the result of logical or relational expression in C?",a:'True or False' ,b: '0 or 1' ,c: '0 if an expression is false and any positive number if an expression is true' ,d:'None of the mentioned' ,ans:'b'},
+	{ "Q":"Which of the following typecasting is accepted by C language?" ,a:'Widening conversions' ,b:'Narrowing conversions' ,c:' Widening & Narrowing conversions',d:'None of the mentioned',ans:'c'},
+	{ "Q": "Where in C the order of precedence of operators do not exist?" ,a: 'Within conditional statements, if, else' ,b: 'Within while, do-while' ,c:'Within a macro definition' ,d: 'None of the mentioned' , ans:'d'},
+    { "Q":"Which of the following is NOT possible with any 2 operators in C?" ,a:'Different precedence, same associativity' ,b: 'Different precedence, different associativity' ,c:'Same precedence, different associativity' ,d:'All of the mentioned' , ans:'c'},
+	{ "Q":" Who is the father of C language?", a: 'Steve Job', b: 'James Gosling' ,c: 'Dennis Ritchie',d: 'Rasmus Lerdorf' ,ans:'c'},
+    { "Q":"What is an example of iteration in C?" ,a:'for' ,b:'while' ,c: 'do-while' ,d: 'all of the mentioned' ,ans:'d'},
+
+    { "Q" :"Functions in C Language are always" ,a:'Internal' ,b:'External',c:'Both Internal and External' ,d:'External and Internal are not valid terms for functions' , ans:'b'},
+    { "Q":" Which of following is not accepted in C?" ,a:'static a = 10; //static as' ,b:' static int func (int); //parameter as static' ,c: 'static static int a; //a static variable prefixed with static' ,d: 'all of the mentioned' , ans:'c'},
+    { "Q" : "Property which allows to produce different executable for different platforms in C is called?" ,a:'File inclusion' ,b:' Selective inclusion' ,c:' Conditional compilation' ,d: 'Recursive macros' ,ans:'c'},
+    { "Q":"What is #include <stdio.h>?" ,a: 'Preprocessor directive' ,b: 'Inclusion directive' ,c:'File inclusion directive' ,d: 'None of the mentioned' , ans:'a'},
+    { "Q": "C preprocessors can have compiler specific features." ,a:'True' ,b:'False' ,c:' Depends on the standard' ,d: 'Depends on the platform' ,ans:'a'},
+    { "Q": "Which of the following are C preprocessors?" ,a: '#ifdef' ,b:'#define' ,c: '#endif' ,d: 'all of the mentioned' , ans:'d'},
+    { "Q":"The C-preprocessors are specified with _________ symbol. ",a: '#' ,b: '$' ,c: '” ”' ,d:'&' , ans:'a'},
+    { "Q":"How is search done in #include and #include “somelibrary.h” according to C standard?" ,a:'When former is used, current directory is searched and when latter is used, standard directory is searched' ,b:'When former is used, standard directory is searched and when latter is used, current directory is searched' ,c: 'When former is used, search is done in implementation defined manner and when latter is used, current directory is searched' ,d:' For both, search for ‘somelibrary’ is done in implementation-defined places' , ans:'b'},
+    { "Q":"How many number of pointer (*) does C have against a pointer variable declaration?" ,a:'7 ',b:'127 ' ,c: '255' ,d :'No limits' , ans:'d' },
+    { "Q":"Which of the following is not possible statically in C language?" ,a:'Jagged Array' ,b :'Rectangular Array' ,c: 'Cuboidal Array' ,d: 'Multidimensional Array' , ans:'a'},
+    { "Q":"Who invented Java Programming?" ,a: 'Guido van Rossum' ,b: 'James Gosling' ,c: 'Dennis Ritchie' ,d: 'Bjarne Stroustrup' ,ans:'b'},
+    {"Q":"Which statement is true about Java?" ,a: 'Java is a sequence-dependent programming language' ,b: 'Java is a code dependent programming language ',c: 'Java is a platform-dependent programming language' ,d: 'Java is a platform-independent programming language' , ans:'d'},
+    {"Q":"Which component is used to compile, debug and execute the java programs?" ,a: 'JRE' ,b: 'JIT' ,c: 'JDK' ,d: 'JVM ', ans:'c'},
+    {"Q":"Which one of the following is not a Java feature?" ,a: 'Object-oriented',b: 'Use of pointers',c: 'Portable',d: 'Dynamic and Extensible' ,ans:'b' },
+    { "Q":"Which of these cannot be used for a variable name in Java?" ,a: 'identifier & keyword',b: 'identifier',c: 'keyword',d: 'none of the mentioned' ,ans:'c'},
+    { "Q":" What is the extension of java code files?",a:' .js',b:' .txt',c: '.class',d: '.java' , ans:'d'},
+    {"Q":"Which environment variable is used to set the java path?",a:' MAVEN_Path',b:' JavaPATH',c:' JAVA',d:' JAVA_HOME' ,ans:'d'},
+    { "Q": "Which of the following is not an OOPS concept in Java?",a:' Polymorphism',b:' Inheritance',c:' Compilation',d:'Encapsulation', ans:'c'},
+    { "Q":"What is not the use of “this” keyword in Java?",a:' Referring to the instance variable when a local variable has the same name',b: 'Passing itself to the method of the same class',c:' Passing itself to another method',d: 'Calling another constructor in constructor chaining', ans:'b'},
+    { "Q": "Which of the following is a type of polymorphism in Java Programming?",a: 'Multiple polymorphism',b:' Compile time polymorphism',c:' Multilevel polymorphism',d:' Execution time polymorphism' ,ans:'b'},
+    { "Q": "Which of these are selection statements in Java?",a:' break',b: 'continue',c:' for()',d: 'if()',ans:'d'},
+    { "Q": "All keywords in C are in" ,a:'LowerCase letters ',b:'UpperCase letters ',c:'CamelCase letters', d:'None of the mentioned' , ans:'a'},
+	{ "Q" : "Which of the following is true for variable names in C?" ,a:'They can contain alphanumeric characters as well as special characters' ,b:'It is not an error to declare a variable to be one of the keywords(like goto, static)' ,c: 'Variable names cannot start with a digit' ,d: 'Variable can be of any length',ans:'c'},
+	{ "Q":" Which is valid C expression?" ,a:'int my_num = 100,000' ,b:'int my_num = 100000' ,c:'int my num = 1000' ,d: 'int $my_num = 10000',ans:'b'},
+	{ "Q":"Which of the following cannot be a variable name in C?" ,a:'volatile' ,b: 'true' ,c: 'friend' ,d:' export', ans:'a'},
+	{ "Q":"What is short int in C programming?" ,a:' The basic data type of C' ,b:'Qualifier' ,c:'Short is the qualifier and int is the basic data type' ,d:'All of the mentioned' , ans:'c' },
+	{ "Q":"Which of the following declaration is not supported by C language?" ,a:'String str' ,b:' char *str' ,c: 'float str = 3e2' ,d: 'Both String str; & float str = 3e2' ,ans:'a'},
+	{ "Q":" Which keyword is used to prevent any changes in the variable within a C program?" ,a: 'immutable' ,b:'mutable' ,c: 'const' ,d: 'volatile' , ans:'c'},
+	{ "Q":"What is the result of logical or relational expression in C?",a:'True or False' ,b: '0 or 1' ,c: '0 if an expression is false and any positive number if an expression is true' ,d:'None of the mentioned' ,ans:'b'},
+	{ "Q":"Which of the following typecasting is accepted by C language?" ,a:'Widening conversions' ,b:'Narrowing conversions' ,c:' Widening & Narrowing conversions',d:'None of the mentioned',ans:'c'},
+	{ "Q": "Where in C the order of precedence of operators do not exist?" ,a: 'Within conditional statements, if, else' ,b: 'Within while, do-while' ,c:'Within a macro definition' ,d: 'None of the mentioned' , ans:'d'},
+    { "Q":"Which of the following is NOT possible with any 2 operators in C?" ,a:'Different precedence, same associativity' ,b: 'Different precedence, different associativity' ,c:'Same precedence, different associativity' ,d:'All of the mentioned' , ans:'c'},
+	{ "Q":" Who is the father of C language?", a: 'Steve Job', b: 'James Gosling' ,c: 'Dennis Ritchie',d: 'Rasmus Lerdorf' ,ans:'c'},
+    { "Q":"What is an example of iteration in C?" ,a:'for' ,b:'while' ,c: 'do-while' ,d: 'all of the mentioned' ,ans:'d'},
+
+    { "Q" :"Functions in C Language are always" ,a:'Internal' ,b:'External',c:'Both Internal and External' ,d:'External and Internal are not valid terms for functions' , ans:'b'},
+    { "Q":" Which of following is not accepted in C?" ,a:'static a = 10; //static as' ,b:' static int func (int); //parameter as static' ,c: 'static static int a; //a static variable prefixed with static' ,d: 'all of the mentioned' , ans:'c'},
+    { "Q" : "Property which allows to produce different executable for different platforms in C is called?" ,a:'File inclusion' ,b:' Selective inclusion' ,c:' Conditional compilation' ,d: 'Recursive macros' ,ans:'c'},
+    { "Q":"What is #include <stdio.h>?" ,a: 'Preprocessor directive' ,b: 'Inclusion directive' ,c:'File inclusion directive' ,d: 'None of the mentioned' , ans:'a'},
+    { "Q": "C preprocessors can have compiler specific features." ,a:'True' ,b:'False' ,c:' Depends on the standard' ,d: 'Depends on the platform' ,ans:'a'},
+    { "Q": "Which of the following are C preprocessors?" ,a: '#ifdef' ,b:'#define' ,c: '#endif' ,d: 'all of the mentioned' , ans:'d'},
+    { "Q":"The C-preprocessors are specified with _________ symbol. ",a: '#' ,b: '$' ,c: '” ”' ,d:'&' , ans:'a'},
+    { "Q":"How is search done in #include and #include “somelibrary.h” according to C standard?" ,a:'When former is used, current directory is searched and when latter is used, standard directory is searched' ,b:'When former is used, standard directory is searched and when latter is used, current directory is searched' ,c: 'When former is used, search is done in implementation defined manner and when latter is used, current directory is searched' ,d:' For both, search for ‘somelibrary’ is done in implementation-defined places' , ans:'b'},
+    { "Q":"How many number of pointer (*) does C have against a pointer variable declaration?" ,a:'7 ',b:'127 ' ,c: '255' ,d :'No limits' , ans:'d' },
+    { "Q":"Which of the following is not possible statically in C language?" ,a:'Jagged Array' ,b :'Rectangular Array' ,c: 'Cuboidal Array' ,d: 'Multidimensional Array' , ans:'a'},
+    { "Q":"Who invented Java Programming?" ,a: 'Guido van Rossum' ,b: 'James Gosling' ,c: 'Dennis Ritchie' ,d: 'Bjarne Stroustrup' ,ans:'b'},
+    {"Q":"Which statement is true about Java?" ,a: 'Java is a sequence-dependent programming language' ,b: 'Java is a code dependent programming language ',c: 'Java is a platform-dependent programming language' ,d: 'Java is a platform-independent programming language' , ans:'d'},
+    {"Q":"Which component is used to compile, debug and execute the java programs?" ,a: 'JRE' ,b: 'JIT' ,c: 'JDK' ,d: 'JVM ', ans:'c'},
+    {"Q":"Which one of the following is not a Java feature?" ,a: 'Object-oriented',b: 'Use of pointers',c: 'Portable',d: 'Dynamic and Extensible' ,ans:'b' },
+    { "Q":"Which of these cannot be used for a variable name in Java?" ,a: 'identifier & keyword',b: 'identifier',c: 'keyword',d: 'none of the mentioned' ,ans:'c'},
+    { "Q":" What is the extension of java code files?",a:' .js',b:' .txt',c: '.class',d: '.java' , ans:'d'},
+    {"Q":"Which environment variable is used to set the java path?",a:' MAVEN_Path',b:' JavaPATH',c:' JAVA',d:' JAVA_HOME' ,ans:'d'},
+    { "Q": "Which of the following is not an OOPS concept in Java?",a:' Polymorphism',b:' Inheritance',c:' Compilation',d:'Encapsulation', ans:'c'},
+    { "Q":"What is not the use of “this” keyword in Java?",a:' Referring to the instance variable when a local variable has the same name',b: 'Passing itself to the method of the same class',c:' Passing itself to another method',d: 'Calling another constructor in constructor chaining', ans:'b'},
+    { "Q": "Which of the following is a type of polymorphism in Java Programming?",a: 'Multiple polymorphism',b:' Compile time polymorphism',c:' Multilevel polymorphism',d:' Execution time polymorphism' ,ans:'b'},
+    { "Q": "Which of these are selection statements in Java?",a:' break',b: 'continue',c:' for()',d: 'if()',ans:'d'},
+    { "Q": "All keywords in C are in" ,a:'LowerCase letters ',b:'UpperCase letters ',c:'CamelCase letters', d:'None of the mentioned' , ans:'a'},
+	{ "Q" : "Which of the following is true for variable names in C?" ,a:'They can contain alphanumeric characters as well as special characters' ,b:'It is not an error to declare a variable to be one of the keywords(like goto, static)' ,c: 'Variable names cannot start with a digit' ,d: 'Variable can be of any length',ans:'c'},
+	{ "Q":" Which is valid C expression?" ,a:'int my_num = 100,000' ,b:'int my_num = 100000' ,c:'int my num = 1000' ,d: 'int $my_num = 10000',ans:'b'},
+	{ "Q":"Which of the following cannot be a variable name in C?" ,a:'volatile' ,b: 'true' ,c: 'friend' ,d:' export', ans:'a'},
+	{ "Q":"What is short int in C programming?" ,a:' The basic data type of C' ,b:'Qualifier' ,c:'Short is the qualifier and int is the basic data type' ,d:'All of the mentioned' , ans:'c' },
+	{ "Q":"Which of the following declaration is not supported by C language?" ,a:'String str' ,b:' char *str' ,c: 'float str = 3e2' ,d: 'Both String str; & float str = 3e2' ,ans:'a'},
+	{ "Q":" Which keyword is used to prevent any changes in the variable within a C program?" ,a: 'immutable' ,b:'mutable' ,c: 'const' ,d: 'volatile' , ans:'c'},
+	{ "Q":"What is the result of logical or relational expression in C?",a:'True or False' ,b: '0 or 1' ,c: '0 if an expression is false and any positive number if an expression is true' ,d:'None of the mentioned' ,ans:'b'},
+	{ "Q":"Which of the following typecasting is accepted by C language?" ,a:'Widening conversions' ,b:'Narrowing conversions' ,c:' Widening & Narrowing conversions',d:'None of the mentioned',ans:'c'},
+	{ "Q": "Where in C the order of precedence of operators do not exist?" ,a: 'Within conditional statements, if, else' ,b: 'Within while, do-while' ,c:'Within a macro definition' ,d: 'None of the mentioned' , ans:'d'},
+    { "Q":"Which of the following is NOT possible with any 2 operators in C?" ,a:'Different precedence, same associativity' ,b: 'Different precedence, different associativity' ,c:'Same precedence, different associativity' ,d:'All of the mentioned' , ans:'c'},
+	{ "Q":" Who is the father of C language?", a: 'Steve Job', b: 'James Gosling' ,c: 'Dennis Ritchie',d: 'Rasmus Lerdorf' ,ans:'c'},
+    { "Q":"What is an example of iteration in C?" ,a:'for' ,b:'while' ,c: 'do-while' ,d: 'all of the mentioned' ,ans:'d'},
+
+    { "Q" :"Functions in C Language are always" ,a:'Internal' ,b:'External',c:'Both Internal and External' ,d:'External and Internal are not valid terms for functions' , ans:'b'},
+    { "Q":" Which of following is not accepted in C?" ,a:'static a = 10; //static as' ,b:' static int func (int); //parameter as static' ,c: 'static static int a; //a static variable prefixed with static' ,d: 'all of the mentioned' , ans:'c'},
+    { "Q" : "Property which allows to produce different executable for different platforms in C is called?" ,a:'File inclusion' ,b:' Selective inclusion' ,c:' Conditional compilation' ,d: 'Recursive macros' ,ans:'c'},
+    { "Q":"What is #include <stdio.h>?" ,a: 'Preprocessor directive' ,b: 'Inclusion directive' ,c:'File inclusion directive' ,d: 'None of the mentioned' , ans:'a'},
+    { "Q": "C preprocessors can have compiler specific features." ,a:'True' ,b:'False' ,c:' Depends on the standard' ,d: 'Depends on the platform' ,ans:'a'},
+    { "Q": "Which of the following are C preprocessors?" ,a: '#ifdef' ,b:'#define' ,c: '#endif' ,d: 'all of the mentioned' , ans:'d'},
+    { "Q":"The C-preprocessors are specified with _________ symbol. ",a: '#' ,b: '$' ,c: '” ”' ,d:'&' , ans:'a'},
+    { "Q":"How is search done in #include and #include “somelibrary.h” according to C standard?" ,a:'When former is used, current directory is searched and when latter is used, standard directory is searched' ,b:'When former is used, standard directory is searched and when latter is used, current directory is searched' ,c: 'When former is used, search is done in implementation defined manner and when latter is used, current directory is searched' ,d:' For both, search for ‘somelibrary’ is done in implementation-defined places' , ans:'b'},
+    { "Q":"How many number of pointer (*) does C have against a pointer variable declaration?" ,a:'7 ',b:'127 ' ,c: '255' ,d :'No limits' , ans:'d' },
+    { "Q":"Which of the following is not possible statically in C language?" ,a:'Jagged Array' ,b :'Rectangular Array' ,c: 'Cuboidal Array' ,d: 'Multidimensional Array' , ans:'a'},
+    { "Q":"Who invented Java Programming?" ,a: 'Guido van Rossum' ,b: 'James Gosling' ,c: 'Dennis Ritchie' ,d: 'Bjarne Stroustrup' ,ans:'b'},
+    {"Q":"Which statement is true about Java?" ,a: 'Java is a sequence-dependent programming language' ,b: 'Java is a code dependent programming language ',c: 'Java is a platform-dependent programming language' ,d: 'Java is a platform-independent programming language' , ans:'d'},
+    {"Q":"Which component is used to compile, debug and execute the java programs?" ,a: 'JRE' ,b: 'JIT' ,c: 'JDK' ,d: 'JVM ', ans:'c'},
+    {"Q":"Which one of the following is not a Java feature?" ,a: 'Object-oriented',b: 'Use of pointers',c: 'Portable',d: 'Dynamic and Extensible' ,ans:'b' },
+    { "Q":"Which of these cannot be used for a variable name in Java?" ,a: 'identifier & keyword',b: 'identifier',c: 'keyword',d: 'none of the mentioned' ,ans:'c'},
+    { "Q":" What is the extension of java code files?",a:' .js',b:' .txt',c: '.class',d: '.java' , ans:'d'},
+    {"Q":"Which environment variable is used to set the java path?",a:' MAVEN_Path',b:' JavaPATH',c:' JAVA',d:' JAVA_HOME' ,ans:'d'},
+    { "Q": "Which of the following is not an OOPS concept in Java?",a:' Polymorphism',b:' Inheritance',c:' Compilation',d:'Encapsulation', ans:'c'},
+    { "Q":"What is not the use of “this” keyword in Java?",a:' Referring to the instance variable when a local variable has the same name',b: 'Passing itself to the method of the same class',c:' Passing itself to another method',d: 'Calling another constructor in constructor chaining', ans:'b'},
+    { "Q": "Which of the following is a type of polymorphism in Java Programming?",a: 'Multiple polymorphism',b:' Compile time polymorphism',c:' Multilevel polymorphism',d:' Execution time polymorphism' ,ans:'b'},
+    { "Q": "Which of these are selection statements in Java?",a:' break',b: 'continue',c:' for()',d: 'if()',ans:'d'},
+    { "Q": "All keywords in C are in" ,a:'LowerCase letters ',b:'UpperCase letters ',c:'CamelCase letters', d:'None of the mentioned' , ans:'a'},
+	{ "Q" : "Which of the following is true for variable names in C?" ,a:'They can contain alphanumeric characters as well as special characters' ,b:'It is not an error to declare a variable to be one of the keywords(like goto, static)' ,c: 'Variable names cannot start with a digit' ,d: 'Variable can be of any length',ans:'c'},
+	{ "Q":" Which is valid C expression?" ,a:'int my_num = 100,000' ,b:'int my_num = 100000' ,c:'int my num = 1000' ,d: 'int $my_num = 10000',ans:'b'},
+	{ "Q":"Which of the following cannot be a variable name in C?" ,a:'volatile' ,b: 'true' ,c: 'friend' ,d:' export', ans:'a'},
+	{ "Q":"What is short int in C programming?" ,a:' The basic data type of C' ,b:'Qualifier' ,c:'Short is the qualifier and int is the basic data type' ,d:'All of the mentioned' , ans:'c' },
+	{ "Q":"Which of the following declaration is not supported by C language?" ,a:'String str' ,b:' char *str' ,c: 'float str = 3e2' ,d: 'Both String str; & float str = 3e2' ,ans:'a'},
+	{ "Q":" Which keyword is used to prevent any changes in the variable within a C program?" ,a: 'immutable' ,b:'mutable' ,c: 'const' ,d: 'volatile' , ans:'c'},
+	{ "Q":"What is the result of logical or relational expression in C?",a:'True or False' ,b: '0 or 1' ,c: '0 if an expression is false and any positive number if an expression is true' ,d:'None of the mentioned' ,ans:'b'},
+	{ "Q":"Which of the following typecasting is accepted by C language?" ,a:'Widening conversions' ,b:'Narrowing conversions' ,c:' Widening & Narrowing conversions',d:'None of the mentioned',ans:'c'},
+	{ "Q": "Where in C the order of precedence of operators do not exist?" ,a: 'Within conditional statements, if, else' ,b: 'Within while, do-while' ,c:'Within a macro definition' ,d: 'None of the mentioned' , ans:'d'},
+    { "Q":"Which of the following is NOT possible with any 2 operators in C?" ,a:'Different precedence, same associativity' ,b: 'Different precedence, different associativity' ,c:'Same precedence, different associativity' ,d:'All of the mentioned' , ans:'c'},
+	{ "Q":" Who is the father of C language?", a: 'Steve Job', b: 'James Gosling' ,c: 'Dennis Ritchie',d: 'Rasmus Lerdorf' ,ans:'c'},
+    { "Q":"What is an example of iteration in C?" ,a:'for' ,b:'while' ,c: 'do-while' ,d: 'all of the mentioned' ,ans:'d'},
+
+    { "Q" :"Functions in C Language are always" ,a:'Internal' ,b:'External',c:'Both Internal and External' ,d:'External and Internal are not valid terms for functions' , ans:'b'},
+    { "Q":" Which of following is not accepted in C?" ,a:'static a = 10; //static as' ,b:' static int func (int); //parameter as static' ,c: 'static static int a; //a static variable prefixed with static' ,d: 'all of the mentioned' , ans:'c'},
+    { "Q" : "Property which allows to produce different executable for different platforms in C is called?" ,a:'File inclusion' ,b:' Selective inclusion' ,c:' Conditional compilation' ,d: 'Recursive macros' ,ans:'c'},
+    { "Q":"What is #include <stdio.h>?" ,a: 'Preprocessor directive' ,b: 'Inclusion directive' ,c:'File inclusion directive' ,d: 'None of the mentioned' , ans:'a'},
+    { "Q": "C preprocessors can have compiler specific features." ,a:'True' ,b:'False' ,c:' Depends on the standard' ,d: 'Depends on the platform' ,ans:'a'},
+    { "Q": "Which of the following are C preprocessors?" ,a: '#ifdef' ,b:'#define' ,c: '#endif' ,d: 'all of the mentioned' , ans:'d'},
+    { "Q":"The C-preprocessors are specified with _________ symbol. ",a: '#' ,b: '$' ,c: '” ”' ,d:'&' , ans:'a'},
+    { "Q":"How is search done in #include and #include “somelibrary.h” according to C standard?" ,a:'When former is used, current directory is searched and when latter is used, standard directory is searched' ,b:'When former is used, standard directory is searched and when latter is used, current directory is searched' ,c: 'When former is used, search is done in implementation defined manner and when latter is used, current directory is searched' ,d:' For both, search for ‘somelibrary’ is done in implementation-defined places' , ans:'b'},
+    { "Q":"How many number of pointer (*) does C have against a pointer variable declaration?" ,a:'7 ',b:'127 ' ,c: '255' ,d :'No limits' , ans:'d' },
+    { "Q":"Which of the following is not possible statically in C language?" ,a:'Jagged Array' ,b :'Rectangular Array' ,c: 'Cuboidal Array' ,d: 'Multidimensional Array' , ans:'a'},
+    { "Q":"Who invented Java Programming?" ,a: 'Guido van Rossum' ,b: 'James Gosling' ,c: 'Dennis Ritchie' ,d: 'Bjarne Stroustrup' ,ans:'b'},
+    {"Q":"Which statement is true about Java?" ,a: 'Java is a sequence-dependent programming language' ,b: 'Java is a code dependent programming language ',c: 'Java is a platform-dependent programming language' ,d: 'Java is a platform-independent programming language' , ans:'d'},
+    {"Q":"Which component is used to compile, debug and execute the java programs?" ,a: 'JRE' ,b: 'JIT' ,c: 'JDK' ,d: 'JVM ', ans:'c'},
+    {"Q":"Which one of the following is not a Java feature?" ,a: 'Object-oriented',b: 'Use of pointers',c: 'Portable',d: 'Dynamic and Extensible' ,ans:'b' },
+    { "Q":"Which of these cannot be used for a variable name in Java?" ,a: 'identifier & keyword',b: 'identifier',c: 'keyword',d: 'none of the mentioned' ,ans:'c'},
+    { "Q":" What is the extension of java code files?",a:' .js',b:' .txt',c: '.class',d: '.java' , ans:'d'},
+    {"Q":"Which environment variable is used to set the java path?",a:' MAVEN_Path',b:' JavaPATH',c:' JAVA',d:' JAVA_HOME' ,ans:'d'},
+    { "Q": "Which of the following is not an OOPS concept in Java?",a:' Polymorphism',b:' Inheritance',c:' Compilation',d:'Encapsulation', ans:'c'},
+    { "Q":"What is not the use of “this” keyword in Java?",a:' Referring to the instance variable when a local variable has the same name',b: 'Passing itself to the method of the same class',c:' Passing itself to another method',d: 'Calling another constructor in constructor chaining', ans:'b'},
+    { "Q": "Which of the following is a type of polymorphism in Java Programming?",a: 'Multiple polymorphism',b:' Compile time polymorphism',c:' Multilevel polymorphism',d:' Execution time polymorphism' ,ans:'b'},
+    { "Q": "Which of these are selection statements in Java?",a:' break',b: 'continue',c:' for()',d: 'if()',ans:'d'},
+    ];
+    document.getElementById('correct').style.display='none';
+    document.getElementById('wrong').style.display='none';
+    document.getElementById('total').style.display='none';
+    document.getElementById('restart').style.display='none';
+    function show()
+    {
+        let n=20;       
+        t=Math.random();
+        t=parseInt(t*100);
+        document.getElementById("que").innerHTML=data[t].Q;
+        document.getElementById("a").innerHTML=data[t].a;
+        document.getElementById("b").innerHTML=data[t].b;
+        document.getElementById("c").innerHTML=data[t].c;
+        document.getElementById("d").innerHTML=data[t].d;
+        st=setInterval(function(){
+            document.getElementById('timer').innerHTML=n;
+            n--;
+            if(n<0)
+            {
+                display(t);
+            }
+        },1000)
+        a++
+        document.getElementById('tq').innerHTML=a+' /20';
+    }    
+    show();
+     
+    function display(q)
+    {
+        if (data[q].ans==ans)
+        {
+            right++;
+        }
+        else
+        {
+            wrong++;
+        }
+        clearInterval(st)
+        c++;
+        if(c>=20)
+        {
+            document.getElementById("que").style.display='none';
+            document.getElementById("op").style.display='none';
+            document.getElementById("but").style.display='none';
+            document.getElementById("timer").style.display='none';
+            document.getElementById("image").style.display='none';
+            document.getElementById('correct').style.display='block';
+            document.getElementById('wrong').style.display='block';
+            document.getElementById('total').style.display='block';
+            document.getElementById('restart').style.display='block';
+            document.getElementById('tq').style.display='none';
+            document.getElementById('cor').innerHTML=right;
+            document.getElementById('w').innerHTML=wrong;
+            document.getElementById('t').innerHTML=right;
+            
+            
+        }
+        else
+        {
+            show();
+        }
+    }
+    function restart()
+    {
+        window.location.href='/start_quiz';
+    }
+</script>
+</html>
